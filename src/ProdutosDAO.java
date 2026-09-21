@@ -44,7 +44,7 @@ public class ProdutosDAO {
             }
         }
     }
-    // Mensagem de feedback ao utilizador).
+    // Mensagem de feedback ao utilizadorrr).
     public ArrayList<ProdutosDTO> listarProdutos() {
         String sql = "SELECT * FROM produtos";
         conn = new conectaDAO().connectDB();
