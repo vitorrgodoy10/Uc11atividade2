@@ -120,17 +120,39 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+                                        
         String id = id_produto_venda.getText();
         
-        ProdutosDAO produtosdao = new ProdutosDAO();
+        // Verifica se o campo não está vazio
+        if (id.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, insira o ID do produto que deseja vender.");
+            return;
+        }
+
+        try {
+            int idProduto = Integer.parseInt(id);
+            ProdutosDAO produtosdao = new ProdutosDAO();
+            
+            // Efetua a venda na base de dados
+            produtosdao.venderProduto(idProduto);
+            
+            // Atualiza a lista exibida na tabela
+            listarProdutos();
+            
+            // Limpa o campo para a próxima operação
+            id_produto_venda.setText("");
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Erro: O ID introduzido deve ser um número numérico.");
+        }
+    
         
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        listarProdutos();
+        
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
-        //vendasVIEW vendas = new vendasVIEW(); 
-        //vendas.setVisible(true);
+        vendasVIEW vendas = new vendasVIEW(); 
+    vendas.setVisible(true);
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
